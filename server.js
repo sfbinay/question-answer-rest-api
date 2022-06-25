@@ -13,6 +13,7 @@ const environment = process.env.NODE_ENV;
 
 app.get("/", (req, res) => {
   res.send("Hello Question Answer Api");
+  console.log("test");
 });
 
 app.listen(PORT, () => {
