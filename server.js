@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const routers = require("./routers");
 
 // Environment Variables
 dotenv.config({
@@ -11,10 +12,8 @@ const app = express();
 const PORT = process.env.PORT;
 const environment = process.env.NODE_ENV;
 
-app.get("/", (req, res) => {
-  res.send("Hello Question Answer Api");
-  console.log("test");
-});
+// Routers Middleware
+app.use("/api", routers);
 
 app.listen(PORT, () => {
   console.log(`App Started on ${PORT} : ${environment}`);
