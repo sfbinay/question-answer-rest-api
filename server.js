@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const routers = require("./routers");
 const connectDatabase = require("./helpers/database/connectDatabase");
+const customErrorHandler = require("./middlewares/errors/customErrorHandler");
 
 // Environment Variables
 dotenv.config({
@@ -17,6 +18,9 @@ const environment = process.env.NODE_ENV;
 
 // Routers Middleware
 app.use("/api", routers);
+
+// Error Handling
+app.use(customErrorHandler);
 
 app.listen(PORT, () => {
   console.log(`App Started on ${PORT} : ${environment}`);
