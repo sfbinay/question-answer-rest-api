@@ -1,10 +1,10 @@
 const User = require("../models/User");
-
+const CustomError = require("../helpers/error/CustomError");
 const register = async (req, res, next) => {
   //data
-  const name = "Ali Veli";
-  const email = "aliveli@mail.com";
-  const password = "12345";
+  const name = "Test test";
+  const email = "testom";
+  const password = "123456";
 
   try {
     const user = await User.create({
@@ -23,7 +23,7 @@ const register = async (req, res, next) => {
 };
 
 const errorTest = (req, res, next) => {
-  return next(new Error("Bir Hata Oluştu"));
+  return next(TypeError("Type Error"));
 };
 
 module.exports = { register, errorTest };
