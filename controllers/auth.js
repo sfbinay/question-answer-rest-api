@@ -1,26 +1,21 @@
 const User = require("../models/User");
 const CustomError = require("../helpers/error/CustomError");
-const register = async (req, res, next) => {
-  //data
-  const name = "Test test";
-  const email = "testom";
-  const password = "123456";
+const asyncErrorWrapper = require("express-async-handler");
 
-  try {
-    const user = await User.create({
-      name,
-      email,
-      password,
-    });
+const register = asyncErrorWrapper(async (req, res, next) => {
+  const { name, email, password, role } = req.body;
+  const user = await User.create({
+    name,
+    email,
+    password,
+    role,
+  });
 
-    res.status(200).json({
-      success: true,
-      data: user,
-    });
-  } catch (err) {
-    return next(err);
-  }
-};
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
 
 const errorTest = (req, res, next) => {
   return next(TypeError("Type Error"));

@@ -16,6 +16,9 @@ const app = express();
 const PORT = process.env.PORT;
 const environment = process.env.NODE_ENV;
 
+// Express - Body Middleware
+app.use(express.json());
+
 // Routers Middleware
 app.use("/api", routers);
 
